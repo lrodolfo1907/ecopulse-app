@@ -1,0 +1,25 @@
+{
+  "name": "ecopulse-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "http-server public -p 3000",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HM-MA/ecopulse-app.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/HM-MA/ecopulse-app/issues"
+  },
+  "homepage": "https://github.com/HM-MA/ecopulse-app#readme",
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}

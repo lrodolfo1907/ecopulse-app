@@ -1,0 +1,16 @@
+# Node.js
+node_modules/
+
+# Build artifacts
+dist/
+build/
+
+# Operating System files
+.DS_Store
+Thumbs.db
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo

@@ -5,12 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EcoPulse - WWF Prototype</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .mobile-frame { max-width: 400px; margin: 0 auto; min-height: 800px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); }
+        .hide { display: none; }
+    </style>
 </head>
 <body class="bg-gray-200 py-10">
 
 <div class="mobile-frame bg-gray-50 rounded-[2.5rem] overflow-hidden relative border-8 border-gray-900">
-
+    
     <div class="bg-green-700 p-6 text-white rounded-b-3xl shadow-md">
         <div class="flex justify-between items-center mb-4">
             <h1 class="text-2xl font-extrabold tracking-tight">EcoPulse <span class="text-xs font-normal align-top border border-white px-1 rounded">by WWF</span></h1>
@@ -22,7 +26,7 @@
                 <p class="text-sm opacity-90">Impact Portfolio</p>
                 <p class="text-2xl font-bold">42 <span class="text-sm font-normal">Green Hours</span></p>
             </div>
-            <button onclick="exportToLinkedIn()" class="text-xs bg-green-500 hover:bg-green-400 px-3 py-1 rounded-full font-semibold transition">
+            <button class="text-xs bg-green-500 hover:bg-green-400 px-3 py-1 rounded-full font-semibold transition">
                 Export to LinkedIn
             </button>
         </div>
@@ -35,7 +39,7 @@
 
     <div id="tab-local" class="p-4 overflow-y-auto h-[500px] pb-24">
         <h3 class="text-sm font-bold text-gray-500 uppercase tracking-wider mb-3">Near You (Rio de Janeiro)</h3>
-
+        
         <div class="bg-white p-4 rounded-2xl shadow-sm border border-gray-100 mb-4">
             <div class="flex justify-between items-start mb-2">
                 <span class="text-xs font-bold text-blue-600 bg-blue-50 px-2 py-1 rounded">In-Person</span>
@@ -48,7 +52,7 @@
             <p class="text-sm text-gray-500 mt-1">Urban Sea Institute • 5km away</p>
             <div class="mt-3 flex justify-between items-center">
                 <span class="text-sm font-semibold text-gray-700">+3 Green Hours</span>
-                <button onclick="joinOpportunity(1)" class="bg-gray-900 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-gray-800">Join</button>
+                <button class="bg-gray-900 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-gray-800">Join</button>
             </div>
         </div>
 
@@ -60,14 +64,14 @@
             <p class="text-sm text-gray-500 mt-1">SOS Atlantic Forest • 8km away</p>
             <div class="mt-3 flex justify-between items-center">
                 <span class="text-sm font-semibold text-gray-700">+4 Green Hours</span>
-                <button onclick="joinOpportunity(2)" class="bg-gray-900 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-gray-800">Join</button>
+                <button class="bg-gray-900 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-gray-800">Join</button>
             </div>
         </div>
     </div>
 
     <div id="tab-micro" class="p-4 overflow-y-auto h-[500px] pb-24 hide">
         <h3 class="text-sm font-bold text-gray-500 uppercase tracking-wider mb-3">15-Minute Impact (Global)</h3>
-
+        
         <div class="bg-white p-4 rounded-2xl shadow-sm border border-gray-100 mb-4">
             <div class="flex justify-between items-start mb-2">
                 <span class="text-xs font-bold text-purple-600 bg-purple-50 px-2 py-1 rounded">Remote • 15 min</span>
@@ -76,10 +80,10 @@
             <p class="text-sm text-gray-500 mt-1">WWF International • Skill: Languages</p>
             <div class="mt-3 flex justify-between items-center">
                 <span class="text-sm font-semibold text-gray-700">+0.5 Green Hours</span>
-                <button onclick="startTask(1)" class="bg-purple-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-purple-700">Start</button>
+                <button class="bg-purple-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-purple-700">Start</button>
             </div>
         </div>
-
+        
         <div class="bg-white p-4 rounded-2xl shadow-sm border border-gray-100">
             <div class="flex justify-between items-start mb-2">
                 <span class="text-xs font-bold text-purple-600 bg-purple-50 px-2 py-1 rounded">Remote • 10 min</span>
@@ -88,7 +92,7 @@
             <p class="text-sm text-gray-500 mt-1">Zero Deforestation Project • Skill: Visual Analysis</p>
             <div class="mt-3 flex justify-between items-center">
                 <span class="text-sm font-semibold text-gray-700">+0.2 Green Hours</span>
-                <button onclick="startTask(2)" class="bg-purple-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-purple-700">Start</button>
+                <button class="bg-purple-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-purple-700">Start</button>
             </div>
         </div>
     </div>
@@ -109,6 +113,19 @@
     </div>
 </div>
 
-<script src="js/app.js"></script>
+<script>
+    function switchTab(tab) {
+        document.getElementById('tab-local').classList.add('hide');
+        document.getElementById('tab-micro').classList.add('hide');
+        document.getElementById('btn-local').classList.replace('bg-green-100', 'bg-white');
+        document.getElementById('btn-local').classList.replace('text-green-800', 'text-gray-500');
+        document.getElementById('btn-micro').classList.replace('bg-green-100', 'bg-white');
+        document.getElementById('btn-micro').classList.replace('text-green-800', 'text-gray-500');
+
+        document.getElementById('tab-' + tab).classList.remove('hide');
+        document.getElementById('btn-' + tab).classList.replace('bg-white', 'bg-green-100');
+        document.getElementById('btn-' + tab).classList.replace('text-gray-500', 'text-green-800');
+    }
+</script>
 </body>
 </html>
